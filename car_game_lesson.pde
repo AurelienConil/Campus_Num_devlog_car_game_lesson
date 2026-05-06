@@ -4,6 +4,15 @@ float pos_fond = 0;
 float pos_joueur_x = 200;
 float pos_joueur_y = 200;
 
+float pos_voiture_droite_x = 180;
+float pos_voiture_droite_y = -200;
+
+float pos_voiture_gauche_x = 30;
+float pos_voiture_gauche_y = -400;
+
+float largeur_voiture = 80;
+float hauteur_voiture = 160;
+
 
 
 void setup() {
@@ -17,6 +26,9 @@ void draw() {
 
   maj_joueur();
   dessiner_joueur();
+
+  maj_voiture();
+  dessiner_voiture();
 
 }
 
@@ -87,4 +99,29 @@ void dessiner_joueur() {
   noStroke();
   fill(255, 0, 0); // Couleur rouge 
   circle(pos_joueur_x, pos_joueur_y, 30);
+}
+
+void maj_voiture() {
+
+  //DROITE
+  pos_voiture_droite_y = pos_voiture_droite_y + vitesse - 2;
+
+  if (pos_voiture_droite_y > height) {
+    pos_voiture_droite_y = -400;
+    pos_voiture_droite_x = random(150, 200 );
+  }
+
+  //pos_voiture_gauche_y
+  pos_voiture_gauche_y = pos_voiture_gauche_y + vitesse + 3;
+  if (pos_voiture_gauche_y > height) {
+    pos_voiture_gauche_y = -800;
+    pos_voiture_gauche_x = random(10, 70); 
+  }
+}
+
+
+void dessiner_voiture() {
+
+  rect(pos_voiture_droite_x, pos_voiture_droite_y, largeur_voiture, hauteur_voiture);
+  rect(pos_voiture_gauche_x, pos_voiture_gauche_y, largeur_voiture, hauteur_voiture);
 }

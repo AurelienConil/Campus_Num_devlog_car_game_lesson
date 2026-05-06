@@ -4,53 +4,58 @@ Bienvenue dans le projet **Car Game Lesson** !
 
 Ce projet est pensé pour faire découvrir les premieres lignes de codes. Ce n'est pas un véritable sujet mais un format live coding. 
 
-## Etape 2
+## Etape 3
 
-## Etape 2.1
+On déssine des voitures, une à droite, qui roule dans le sens du joueur, et une à gauche qui roule en sens contraire.
 
-On introduit 2 nouvelles variables
+On peut commencer avec une seule voiture
 
-    float pos_joueur_x = 200;
-    float pos_joueur_y = 200;
-
-Ainsi qu'une nouvelle fonction
-
-    dessiner_joueur();
-
-On peut en profiter pour discuter des couleurs
+    float pos_voiture_droite_x = 180;
+    float pos_voiture_droite_y = -200;
 
 
-## Etape 2.2
-
-Mis en mouvement du joueur. A cette étape, la partie "gravité" est ignoré. Il faut toutefois prendre le temps d'expliquer ici le principe d'un IF
-
-    void maj_joueur() {
+    float largeur_voiture = 80;
+    float hauteur_voiture = 160;
 
 
-        if (keyPressed) {
-            
-            if (keyCode == LEFT) {
-            println("Flèche gauche appuyée");
-            pos_joueur_x = pos_joueur_x - 5;
-            }
-            if (keyCode == RIGHT) {
-            println("Flèche droite appuyée");
-            pos_joueur_x = pos_joueur_x + 5;
-            }
-            if (keyCode == UP) {
-            println("Flèche haut appuyée");
-            pos_joueur_y = pos_joueur_y - 5;
-            }
-            if (keyCode == DOWN) {
-            println("Flèche bas appuyée");
-            pos_joueur_y = pos_joueur_y + 5;
-            }
-        }
+On définit la fontion de dessin
 
-    
+    void dessiner_voiture() {
+
+    rect(pos_voiture_droite_x, pos_voiture_droite_y, largeur_voiture, hauteur_voiture);
+
     }
 
-On le présente en français : Si une touche est appuyé et que la derniere touche appuyée ( keyCode ) est : "gauche", alors on va à gauche
+Puis la fonction de mise à jour
 
-On en profite aussi pour introduire le println et voir le resultat dans la console.
+    void maj_voiture() {
+
+    //DROITE
+    pos_voiture_droite_y = pos_voiture_droite_y + vitesse - 2;
+
+    if (pos_voiture_droite_y > height) {
+        pos_voiture_droite_y = -400;
+        
+    }
+
+    }
+
+
+On prend le temps d'expliquer que si on avait
+
+    pos_voiture_droite_y = pos_voiture_droite_y + vitesse
+
+La voiture serait "fixe", par rapport à la route
+
+On introduit aussi un leger mouvement random à chaque retour.
+
+    pos_voiture_droite_x = random(150, 200 );
+
+
+
+On finit enssuite par un gros copier-coller pour la voiture de gauche.
+
+
+
+
 
