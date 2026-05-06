@@ -4,56 +4,49 @@ Bienvenue dans le projet **Car Game Lesson** !
 
 Ce projet est pensé pour faire découvrir les premieres lignes de codes. Ce n'est pas un véritable sujet mais un format live coding. 
 
-## Etape 3
+## Etape 4
 
-On déssine des voitures, une à droite, qui roule dans le sens du joueur, et une à gauche qui roule en sens contraire.
+On va parler de la collision.
 
-On peut commencer avec une seule voiture
+On introduit la variable booleenne, et les operateurs booleens dans le if
 
-    float pos_voiture_droite_x = 180;
-    float pos_voiture_droite_y = -200;
-
-
-    float largeur_voiture = 80;
-    float hauteur_voiture = 160;
+### Detection de collision
 
 
-On définit la fontion de dessin
-
-    void dessiner_voiture() {
-
-    rect(pos_voiture_droite_x, pos_voiture_droite_y, largeur_voiture, hauteur_voiture);
+    if ( pos_joueur_x > pos_voiture_droite_x 
+    && pos_joueur_x < (pos_voiture_droite_x + largeur_voiture )
+    && pos_joueur_y > pos_voiture_droite_y
+    && pos_joueur_y < (pos_voiture_droite_y + hauteur_voiture )
+    ){
+      
+     jeu_termine = true; 
 
     }
-
-Puis la fonction de mise à jour
-
-    void maj_voiture() {
-
-    //DROITE
-    pos_voiture_droite_y = pos_voiture_droite_y + vitesse - 2;
-
-    if (pos_voiture_droite_y > height) {
-        pos_voiture_droite_y = -400;
-        
-    }
-
-    }
+    
 
 
-On prend le temps d'expliquer que si on avait
-
-    pos_voiture_droite_y = pos_voiture_droite_y + vitesse
-
-La voiture serait "fixe", par rapport à la route
-
-On introduit aussi un leger mouvement random à chaque retour.
-
-    pos_voiture_droite_x = random(150, 200 );
+On prend le temps d'expliquer qu'est ce que ça veut dire qu'un point est dans un carré. On explique bien que la largeur, le diamètre du joueur n'est pas pris en compte. Il faudrait en quelque sorte rajouter des "marges" pour que ça soit crédible.
 
 
+Il est relativement facile d'expliquer le && dans un cas comme celui ci.
 
-On finit enssuite par un gros copier-coller pour la voiture de gauche.
+### affichage du game over
+
+On parle alors de la variable booléenne jeu_termine
+
+On parle aussi de if 
+
+Exercie relativement esthétique, après un épisode algorithmique. On explique l'alpha avec
+
+  fill(0, 0, 0, 200);
+
+On laisse aussi les élèves personnaliser à leur guise
+
+  fill(255);
+  textAlign(CENTER, CENTER);
+  textSize(32);
+  text("GAME OVER", width/2, height/2 - 30);
+
 
 
 

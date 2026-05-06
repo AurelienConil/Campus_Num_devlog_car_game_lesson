@@ -13,6 +13,8 @@ float pos_voiture_gauche_y = -400;
 float largeur_voiture = 80;
 float hauteur_voiture = 160;
 
+boolean jeu_termine = false;
+
 
 
 void setup() {
@@ -29,6 +31,12 @@ void draw() {
 
   maj_voiture();
   dessiner_voiture();
+
+  detecter_collision();
+
+  if (jeu_termine) {
+    afficher_game_over();
+  }
 
 }
 
@@ -104,7 +112,7 @@ void dessiner_joueur() {
 void maj_voiture() {
 
   //DROITE
-  pos_voiture_droite_y = pos_voiture_droite_y + vitesse - 2;
+  pos_voiture_droite_y = pos_voiture_droite_y + vitesse - 1;
 
   if (pos_voiture_droite_y > height) {
     pos_voiture_droite_y = -400;
@@ -124,4 +132,46 @@ void dessiner_voiture() {
 
   rect(pos_voiture_droite_x, pos_voiture_droite_y, largeur_voiture, hauteur_voiture);
   rect(pos_voiture_gauche_x, pos_voiture_gauche_y, largeur_voiture, hauteur_voiture);
+}
+
+void detecter_collision() {
+  
+  //Collision 
+  
+  
+
+    // Test collision avec voiture droite
+    if ( pos_joueur_x > pos_voiture_droite_x 
+    && pos_joueur_x < (pos_voiture_droite_x + largeur_voiture )
+    && pos_joueur_y > pos_voiture_droite_y
+    && pos_joueur_y < (pos_voiture_droite_y + hauteur_voiture )
+    ){
+      
+     jeu_termine = true; 
+    }
+    
+    // Test collision avec voiture gauche
+    if ( pos_joueur_x > pos_voiture_gauche_x 
+    && pos_joueur_x < (pos_voiture_gauche_x + largeur_voiture )
+    && pos_joueur_y > pos_voiture_gauche_y
+    && pos_joueur_y < (pos_voiture_gauche_y + hauteur_voiture )
+    ){
+      
+     jeu_termine = true; 
+    }
+    
+    
+    
+     
+}
+
+void afficher_game_over() {
+  fill(0, 0, 0, 200);
+  rect(0, 0, width, height);
+
+  fill(255);
+  textAlign(CENTER, CENTER);
+  textSize(32);
+  text("GAME OVER", width/2, height/2 - 30);
+
 }
