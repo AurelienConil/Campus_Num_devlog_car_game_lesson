@@ -1,4 +1,6 @@
-float vitesse = 3;
+float vitesse_depart = 4;
+float vitesse_finale = 4;
+
 float pos_fond = 0;
 
 float pos_joueur_x = 200;
@@ -41,8 +43,11 @@ void draw() {
 }
 
 void maj_fond() {
-  
-  pos_fond = pos_fond + vitesse ;
+
+  // On introduit une nouvelle variable.
+  // l'objectif est de faire augmenter de 1 toutes les 10 secondes.
+  vitesse_finale = vitesse_depart + millis()/10000;
+  pos_fond = pos_fond + vitesse_finale ;
 
   if (pos_fond > 480) {
     pos_fond = 0;
@@ -98,7 +103,7 @@ void maj_joueur() {
 
   // Gravité : ramène le joueur vers le bas
   if (pos_joueur_y < 400) {
-    pos_joueur_y = pos_joueur_y + (vitesse / 4);
+    pos_joueur_y = pos_joueur_y + (vitesse_finale / 4);
   }
  
 }
@@ -112,7 +117,7 @@ void dessiner_joueur() {
 void maj_voiture() {
 
   //DROITE
-  pos_voiture_droite_y = pos_voiture_droite_y + vitesse - 1;
+  pos_voiture_droite_y = pos_voiture_droite_y + vitesse_finale - 1;
 
   if (pos_voiture_droite_y > height) {
     pos_voiture_droite_y = -400;
@@ -120,7 +125,7 @@ void maj_voiture() {
   }
 
   //pos_voiture_gauche_y
-  pos_voiture_gauche_y = pos_voiture_gauche_y + vitesse + 3;
+  pos_voiture_gauche_y = pos_voiture_gauche_y + vitesse_finale + 3;
   if (pos_voiture_gauche_y > height) {
     pos_voiture_gauche_y = -800;
     pos_voiture_gauche_x = random(10, 70); 
