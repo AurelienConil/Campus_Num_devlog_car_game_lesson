@@ -16,7 +16,9 @@ Le projet est structuré en plusieurs branches Git, chacune correspondant à une
 - **etape1** : Mise en place du fond animé
 - **etape2** : Ajout du personnage
 - **etape3** : Ajouts des voitures
-- etc.
+- **etape4** : Calcul de collision et affichage de game over
+- **etape5** : Acceleration progressive de la voiture : FIN du jeu officiel ( code du main)
+- **etape6** : Optionnel : ajout d'images pour un jeu encore plus réaliste 
 
 Pour progresser, change simplement de branche (`git checkout etapeX`) et découvre le code associé à chaque étape.
 
