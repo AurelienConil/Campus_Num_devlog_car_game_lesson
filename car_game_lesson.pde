@@ -3,6 +3,10 @@ float vitesse_finale = 4;
 
 float pos_fond = 0;
 
+PImage image_voiture_droite;
+PImage image_voiture_gauche;
+PImage image_joueur;
+
 float pos_joueur_x = 200;
 float pos_joueur_y = 200;
 
@@ -21,6 +25,9 @@ boolean jeu_termine = false;
 
 void setup() {
   size(300, 480);
+  image_voiture_droite = loadImage("car_right.png");
+  image_voiture_gauche = loadImage("car_left.png");
+  image_joueur = loadImage("player.png");
 }
 
 void draw() {
@@ -109,9 +116,11 @@ void maj_joueur() {
 }
 
 void dessiner_joueur() {
+  image(image_joueur, pos_joueur_x-20, pos_joueur_y);
   noStroke();
   fill(255, 0, 0); // Couleur rouge 
-  circle(pos_joueur_x, pos_joueur_y, 30);
+  circle(pos_joueur_x, pos_joueur_y, 30); // On conserve le cercle pour debug
+
 }
 
 void maj_voiture() {
@@ -135,8 +144,13 @@ void maj_voiture() {
 
 void dessiner_voiture() {
 
-  rect(pos_voiture_droite_x, pos_voiture_droite_y, largeur_voiture, hauteur_voiture);
-  rect(pos_voiture_gauche_x, pos_voiture_gauche_y, largeur_voiture, hauteur_voiture);
+  //rect(pos_voiture_droite_x, pos_voiture_droite_y, largeur_voiture, hauteur_voiture);
+  //rect(pos_voiture_gauche_x, pos_voiture_gauche_y, largeur_voiture, hauteur_voiture);
+
+
+  image(image_voiture_droite, pos_voiture_droite_x, pos_voiture_droite_y, largeur_voiture, hauteur_voiture);
+  image(image_voiture_gauche, pos_voiture_gauche_x, pos_voiture_gauche_y, largeur_voiture, hauteur_voiture);
+
 }
 
 void detecter_collision() {
